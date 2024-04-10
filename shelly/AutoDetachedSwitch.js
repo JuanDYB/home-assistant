@@ -1,5 +1,5 @@
 // --------------------- Shelly Plus Script ---------------------
-// - (C): Juan Díez-Yanguas Barber 
+// - (C): Juan Díez-Yanguas Barber 2024
 // - Script to monitor Home Assistant Connection from Shelly devices.
 // - When connection is ok switches can be set to detached switchs. On connection fail set switches in switch mode
 // ---------------------------------------------------------------
