@@ -26,18 +26,22 @@ function setSwitchConfiguration(switchId, inMode){
     });
 }
 
-function processPingResult(pingOk){
-  Shelly.call("Switch.GetConfig", { id: "0"},
+function processResultForSwitch(switchId, pingOk){
+  Shelly.call("Switch.GetConfig", { id: switchId},
     function(config){
       let currentDetached = config.in_mode === "detached";
       let setConfig = (currentDetached && !pingOk) || (!currentDetached && pingOk);
       let setInMode = pingOk ? "detached" : "flip";
       if(setConfig){
-        setSwitchConfiguration(0, setInMode);
-        setSwitchConfiguration(1, setInMode);
+        setSwitchConfiguration(switchId, setInMode);
       }
     }
   );
+}
+
+function processPingResult(pingOk){
+  processResultForSwitch(0, pingOk);
+  processResultForSwitch(1, pingOk);
 }
 
 function onPingResponse(response, error_code, error_message){
